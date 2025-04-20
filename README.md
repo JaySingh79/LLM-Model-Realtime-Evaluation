@@ -1,6 +1,6 @@
 <div align="center">
 
-# Ollama Grid Search
+# Ollama Grid Search Model Evaluation
 
 **Evaluate multiple LLMs and prompts with visual precision**
 
