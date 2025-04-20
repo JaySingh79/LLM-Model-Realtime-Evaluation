@@ -1,110 +1,145 @@
-# Ollama Grid Search: Instantly Evaluate Multiple LLMs and Prompts.
+<div align="center">
 
-This project automates the process of selecting the best models, prompts, or inference parameters for a given use-case, allowing you to iterate over their combinations and to visually inspect the results.
+# Ollama Grid Search
 
-It assumes [Ollama](https://www.ollama.ai) is installed and serving endpoints, either in `localhost` or in a remote server.
+**Evaluate multiple LLMs and prompts with visual precision**
 
-Here's what an experiment for a simple prompt, tested on 3 different models, looks like:
+[![GitHub Stars](https://img.shields.io/github/stars/dezoito/ollama-grid-search?style=flat&color=4f5d75)](https://github.com/dezoito/ollama-grid-search)
+[![License](https://img.shields.io/badge/license-MIT-f95738)](LICENSE)
+[![Latest Release](https://img.shields.io/github/v/release/dezoito/ollama-grid-search?color=2d3142)](https://github.com/dezoito/ollama-grid-search/releases)
 
-[<img src="./screenshots/main.png?raw=true" alt="Main Screenshot" width="720">](./screenshots/main.png?raw=true)
+<img src="./screenshots/main.png?raw=true" alt="Demo Screenshot" width="80%">
 
-(For a more in-depth look at an evaluation process assisted by this tool, please check https://dezoito.github.io/2023/12/27/rust-ollama-grid-search.html).
+</div>
 
-## Table of Contents
+---
 
-- [Installation](#installation)
-- [Features](#features)
-- [Grid Search Concept](#grid-search-or-something-similar)
-- [A/B Testing](#ab-testing)
-- [Prompt Archive](#prompt-archive)
-- [Experiment Logs](#experiment-logs)
-- [Future Features](#future-features)
-- [Contributing](#contributing)
-- [Development](#development)
-- [Citations](#citations)
-- [Acknowledgements](#thank-you)
+## What is it?
 
-## Installation
+A minimal, elegant tool that lets you test multiple models, prompts, and parameters in a single experiment. Built for [Ollama](https://www.ollama.ai) servers, whether running locally or remotely.
 
-Check the [releases page](https://github.com/dezoito/ollama-grid-search/releases) for the project, or on the sidebar.
+[Read about evaluation workflow →](https://dezoito.github.io/2023/12/27/rust-ollama-grid-search.html)
 
-## Features
+## ↓ Installation
 
-- Automatically fetches models from local or remote Ollama servers;
-- Iterates over multiple different models, prompts and parameters to generate inferences;
-- A/B test different prompts on several models simultaneously;
-- Allows multiple iterations for each combination of parameters;
-- Allows [limited concurrency](https://dezoito.github.io/2024/03/21/react-limited-concurrency.html) **or** synchronous inference calls (to prevent spamming servers);
-- Optionally outputs inference parameters and response metadata (inference time, tokens and tokens/s);
-- Refetching of individual inference calls;
-- Model selection can be filtered by name;
-- List experiments which can be downloaded in JSON format;
-- Experiments can be inspected in readable views;
-- Re-run past experiments, cloning or modifying the parameters used in the past;
-- Configurable inference timeout;
-- Custom default parameters and system prompts can be defined in settings
-- Fully functional prompt database with examples;
-- Prompts can be selected and "autocompleted" by typing "/" in the inputs
+```
+# Download from GitHub Releases
+https://github.com/dezoito/ollama-grid-search/releases
+```
 
-## Grid Search (or something similar...)
+---
 
-Technically, the term "grid search" refers to iterating over a series of different model hyperparams to optimize model performance, but that usually means parameters like `batch_size`, `learning_rate`, or `number_of_epochs`, more commonly used in training.
+<div align="center">
 
-But the concept here is similar:
+## Features at a Glance
 
-Lets define a selection of models, a prompt and some parameter combinations:
+</div>
 
-[<img src="./screenshots/gridparams-animation.gif?raw=true" alt="gridparams" width="400">](./screenshots/gridparams-animation.gif?raw=true)
+|  |  |
+|--|--|
+| 🔍 | **Multi-model evaluation** — Test across your model library |
+| ⚡ | **Parameter exploration** — Find optimal inference settings |
+| 🔄 | **A/B testing** — Compare prompts side-by-side |
+| 📊 | **Performance metrics** — Track inference time and throughput |
+| 📑 | **Prompt library** — Store and retrieve prompts with "/" |
+| 🧪 | **Experiment history** — Save, clone, and modify tests |
+| ⚙️ | **Resource controls** — Optional concurrency limiting |
 
-The prompt will be submitted once for each parameter **value**, for each one of the selected models, generating a set of responses.
+---
 
-## A/B Testing
+<div align="center">
 
-Similarly, you can perform A/B tests by selecting different models and compare results for the same prompt/parameter combination, or test different prompts under similar configurations:
+## Grid Search Exploration
 
-[<img src="./screenshots/ab-animation.gif?raw=true" alt="A/B testing" width="720">](./screenshots/ab-animation.gif?raw=true)
+<img src="./screenshots/gridparams-animation.gif?raw=true" alt="Grid Search Animation" width="60%">
 
-<small>Comparing the results of different prompts for the same model</small>
+*Select models → Define parameters → Compare results*
 
-## Prompt Archive
+</div>
 
-You can save and manage your prompts (we want to make prompts compatible with [Open WebUI](https://github.com/open-webui/open-webui))
+---
 
-[<img src="./screenshots/prompt-archive.png?raw=true" alt="Settings" width="720">](./screenshots/prompt-archive.png?raw=true)
+<div align="center">
 
-You can **autocomplete** prompts by typing "/" (inspired by Open WebUI, as well):
+## Prompt Engineering
 
-[<img src="./screenshots/autocomplete.gif?raw=true" alt="A/B testing" width="720">](./screenshots/autocomplete.gif?raw=true)
+<img src="./screenshots/ab-animation.gif?raw=true" alt="A/B Testing Animation" width="70%">
 
-## Experiment Logs
+*Test variations to find the perfect prompt formulation*
 
-You can list, inspect, or download your experiments:
+</div>
 
-[<img src="./screenshots/experiments.png?raw=true" alt="Settings" width="720">](./screenshots/experiments.png?raw=true)
+---
 
-## Future Features
+## Prompt Library
 
-- Grading results and filtering by grade
-- Importing, exporting and sharing prompt lists and experiment files.
+Store your prompts in a searchable library, compatible with [Open WebUI](https://github.com/open-webui/open-webui).
+
+<div align="center">
+<img src="./screenshots/prompt-archive.png?raw=true" alt="Prompt Archive" width="70%">
+</div>
+
+Quick access with "/" autocomplete:
+
+<div align="center">
+<img src="./screenshots/autocomplete.gif?raw=true" alt="Autocomplete Demo" width="70%">
+</div>
+
+---
+
+## Experiment Tracking
+
+<div align="center">
+<img src="./screenshots/experiments.png?raw=true" alt="Experiments View" width="70%">
+</div>
+
+- **Browse** previous experiments
+- **Export** as JSON for analysis
+- **Clone** past configurations
+- **Modify** parameters for iteration
+
+---
+
+## Roadmap
+
+- Result grading system
+- Prompt library import/export
+- Sharing capabilities
+
+---
 
 ## Contributing
 
-- For obvious bugs and spelling mistakes, please go ahead and submit a PR.
+We value simplicity and purpose:
 
-- If you want to propose a new feature, change existing functionality, or propose anything more complex, please open an issue for discussion, **before** getting work done on a PR.
+- **Simple fixes:** Submit PRs directly
+- **New features:** Open an issue for discussion first
+- **Documentation:** Help improve our guides
 
-## Development
+[Development notes](./docs/DEVELOPMENT.md) available for technical details.
 
-The [development notes](./docs/DEVELOPMENT.md) provide setup instructions, sequence diagrams, and workflow charts that should make it easier to understand the project and get started.
+---
 
 ## Citations
 
-The following works and theses have cited this repository:
+```
+Inouye, D., Lindo, L., Lee, R., & Allen, E. (2024).
+Applied Auto-tuning on LoRA Hyperparameters.
+Computer Science and Engineering Senior Theses, Santa Clara University.
+```
 
-Inouye, D & Lindo, L, & Lee, R & Allen, E; Computer Science and Engineering Senior Theses: **Applied Auto-tuning on LoRA Hyperparameters**
-Santa Clara University, 2024
-<https://scholarcommons.scu.edu/cgi/viewcontent.cgi?article=1271&context=cseng_senior>
+---
 
-## Thank you!
+<div align="center">
 
-Huge thanks to [@FabianLars](https://github.com/FabianLars), [@peperroni21](https://github.com/pepperoni21) and [@TomReidNZ](https://github.com/TomReidNZ).
+## Acknowledgements
+
+Special thanks to [@FabianLars](https://github.com/FabianLars), [@peperroni21](https://github.com/pepperoni21), and [@TomReidNZ](https://github.com/TomReidNZ)
+
+<br>
+
+***
+
+<sub>Built with ♡ for the LLM community</sub>
+
+</div>
